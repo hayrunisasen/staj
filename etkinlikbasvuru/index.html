@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8" />
+  <title>Etkinlik Başvuru Formu</title>
+  <style>
+    /* Canlı ve hareketli arka plan */
+    @keyframes renkDegistir {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: linear-gradient(-45deg, #ff9a9e, #fad0c4, #fad0c4, #fbc1cc);
+      background-size: 400% 400%;
+      animation: renkDegistir 15s ease infinite;
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .container {
+      background-color: rgba(255, 255, 255, 0.98);
+      padding: 30px 40px;
+      border-radius: 15px;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+      max-width: 600px;
+      width: 90%;
+      box-sizing: border-box;
+      position: relative;
+      z-index: 1;
+    }
+
+    h2 {
+      text-align: center;
+      margin-bottom: 25px;
+      color: #333;
+      font-weight: 700;
+    }
+
+    label {
+      display: block;
+      margin-top: 15px;
+      margin-bottom: 5px;
+      color: #444;
+      font-weight: 600;
+    }
+
+    input[type="text"],
+    input[type="email"],
+    input[type="number"],
+    input[type="date"],
+    select,
+    textarea,
+    input[type="file"] {
+      width: 100%;
+      padding: 10px 12px;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      font-size: 14px;
+      box-sizing: border-box;
+      transition: border-color 0.3s ease;
+    }
+
+    input[type="text"]:focus,
+    input[type="email"]:focus,
+    input[type="number"]:focus,
+    input[type="date"]:focus,
+    select:focus,
+    textarea:focus,
+    input[type="file"]:focus {
+      border-color: #4caf50;
+      outline: none;
+    }
+
+    textarea {
+      resize: vertical;
+      min-height: 60px;
+      font-family: inherit;
+    }
+
+    button {
+      margin-top: 25px;
+      width: 100%;
+      padding: 14px;
+      border: none;
+      background-color: #4caf50;
+      color: white;
+      font-size: 16px;
+      font-weight: 700;
+      border-radius: 10px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+
+    button:hover {
+      background-color: #45a049;
+    }
+
+    /* Bildirim mesaj kutusu */
+    #basariMesaji {
+      position: fixed;
+      top: -60px; /* gizli başlangıç */
+      left: 50%;
+      transform: translateX(-50%);
+      background-color: #4caf50;
+      color: white;
+      padding: 15px 30px;
+      border-radius: 8px;
+      font-weight: 600;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+      opacity: 0;
+      pointer-events: none;
+      transition: top 0.5s ease, opacity 0.5s ease;
+      z-index: 1000;
+    }
+
+    /* Gösterim aktifken */
+    #basariMesaji.goster {
+      top: 20px;
+      opacity: 1;
+      pointer-events: auto;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h2>Etkinlik Başvuru Formu</h2>
+    <form id="etkinlikFormu">
+      <label>Ad Soyad:</label>
+      <input type="text" name="adSoyad" required />
+
+      <label>Etkinlik Türü:</label>
+      <select name="etkinlikTuru" required>
+        <option value="" disabled selected>Seçiniz</option>
+        <option>Bilimsel</option>
+        <option>Kültürel</option>
+        <option>Eğitim</option>
+        <option>Sosyal Sorumluluk ve Toplumsal Katkı</option>
+        <option>Eğitim ve Bilinçlendirme</option>
+        <option>Spor</option>
+        <option>Sanal</option>
+        <option>Dini Etkinlikler</option>
+        <option>Sağlık</option>
+        <option>Doğa</option>
+        <option>Paydaş Etkinlikleri</option>
+        <option>Sürdürülebilirlik Projeleri</option>
+        <option>Diğer</option>
+      </select>
+
+      <label>Etkinlik Alt Türü:</label>
+      <select name="altTuru" required>
+        <option value="" disabled selected>Seçiniz</option>
+        <option>Akademik Konferanslar</option>
+        <option>Seminerler</option>
+        <option>Atölye Çalışmaları</option>
+        <option>Diğer</option>
+      </select>
+
+      <label>Etkinliği Yapan Birim:</label>
+      <input type="text" name="birim" required />
+
+      <label>Etkinlik Adı:</label>
+      <input type="text" name="etkinlikAdi" required />
+
+      <label>Program İçeriği:</label>
+      <textarea name="icerik" rows="3"></textarea>
+
+      <label>Amaç / Hedef:</label>
+      <textarea name="amac" rows="2"></textarea>
+
+      <label>Planlanan Tarih:</label>
+      <input type="date" name="tarih" required />
+
+      <label>Planlanan Yer:</label>
+      <select name="yer" required>
+        <option value="" disabled selected>Seçiniz</option>
+        <option>Aşık Şenlik Kültür Merkezi</option>
+        <option>Aşık Şenlik Kültür Merkezi Sergi Salonu</option>
+        <option>Aşık Şenlik Kültür Merkezi Fuaye Alanı</option>
+        <option>Necip Fazıl Konferans Salonu</option>
+        <option>Nazım Hikmet Konferans Salonu</option>
+        <option>Cengiz Aytmatov Konferans Salonu</option>
+        <option>Hoca Ahmet Yesevi Konferans Salonu</option>
+        <option>Wilhelm Radloff Konferans Salonu</option>
+        <option>İktisat Fakültesi Konferans Salonu</option>
+        <option>Mühendislik Fakültesi Konferans Salonu</option>
+        <option>Öğrenci Yaşam Merkezi ARÜ Sinema</option>
+        <option>Öğrenci Yaşam Merkezi Bowling Salonu</option>
+        <option>Öğrenci Yaşam Merkezi Yarı Olimpik Yüzme Havuzu</option>
+        <option>Öğrenci Yaşam Merkezi Çok Amaçlı Spor Salonu</option>
+        <option>Öğrenci Yaşam Merkezi Tırmanış Duvarı</option>
+        <option>Diğer</option>
+      </select>
+
+      <label>Konuşmacı / Katılımcı Bilgisi:</label>
+      <textarea name="katilimci" rows="2"></textarea>
+
+      <label>İş Birliği Yapılan Kurumlar:</label>
+      <input type="text" name="kurumlar" />
+
+      <label>Ulaşması Planlanan Kişi Sayısı:</label>
+      <input type="number" name="kisiSayisi" min="1" />
+
+      <label>Kazanımlar / Açıklama:</label>
+      <textarea name="kazanım" rows="2"></textarea>
+
+      <label>Dosya Seç (İsteğe Bağlı):</label>
+      <input type="file" name="dosya" />
+
+      <button type="submit">Gönder</button>
+    </form>
+
+    <div id="basariMesaji">Başvuru başarıyla tamamlandı!</div>
+  </div>
+
+  <script>
+    const form = document.getElementById('etkinlikFormu');
+    const basariMesaji = document.getElementById('basariMesaji');
+
+    form.addEventListener('submit', function(e) {
+      e.preventDefault(); // Form gönderimini engelle (örnek amaçlı)
+
+      // Burada istersen form verilerini işleyebilirsin (AJAX, fetch, PHP vb.)
+
+      // Bildirimi göster
+      basariMesaji.classList.add('goster');
+
+      // 3 saniye sonra bildirimi gizle
+      setTimeout(() => {
+        basariMesaji.classList.remove('goster');
+      }, 3000);
+
+      // İstersen formu sıfırla
+      form.reset();
+    });
+  </script>
+</body>
+</html>
